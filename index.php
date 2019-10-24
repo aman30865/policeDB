@@ -1,14 +1,11 @@
 <?php
-    $mysqlServer = "localhost";
-    $mysqlDb = "police";
-    $mysqlUser = "root";
-    $mysqlPass = "pwdpwd";
-
     session_start();
+    require_once "config.php";
+    
     $error = ""; 
-    $link = mysqli_connect($mysqlServer, $mysqlUser, $mysqlPass) or die("failed to connect to db");
 
 /*----------------------LOGOUT-----------------------------------------*/
+
     if (array_key_exists("logout", $_GET)) {
             unset($_SESSION);
             setcookie("id", "", time() - 60*60);
@@ -18,11 +15,10 @@
              (array_key_exists("id", $_COOKIE) AND $_COOKIE['id'])) {
               header("Location: loggedinpage.php");
         }
+
 /*-----------------------SIGNUP----------------------------------------*/
+
     if (array_key_exists("submit", $_POST)) {
-        if (!$_POST['name']) {
-            $error .= "An name address is required<br>";
-        } 
         if (!$_POST['AADHAR']) {
             $error .= "A AADHAR is required<br>";
         } 
@@ -41,10 +37,10 @@
                 if (mysqli_num_rows($result) > 0) {
                     $error = "That AADHAR number is already taken.";
                 } else {
-                    
+                echo mysqli_num_rows($result);  
 /*------------------------SIGNUP-Insertion--------------------------------------*/
                    
-                    $query = "INSERT INTO `users` (`name`,'AADHAR', `password`) VALUES ('".mysqli_real_escape_string($link, $_POST['name'])."',,".mysqli_real_escape_string($link, $_POST['AADHAR'])." '".mysqli_real_escape_string($link, $_POST['password'])."')";
+                    $query = "INSERT INTO `users` (`name`,`AADHAR`, `password`) VALUES ('".mysqli_real_escape_string($link, $_POST['name'])."','".mysqli_real_escape_string($link, $_POST['AADHAR'])."','".mysqli_real_escape_string($link, $_POST['password'])."')";
 
                     if (!mysqli_query($link, $query)) {
 
@@ -79,7 +75,7 @@
                             }
                             header("Location: loggedinpage.php");   
                         } else {
-                            $error = "That AADHAR/password combination could not be found.";
+                            $error = "That AADHAR/password combination Wrong.";
                         }
                     } else {
                         $error = "That AADHAR/password combination could not be found.";
@@ -102,7 +98,6 @@
 </form>
 
 <form method="post">
-    <input type="text" name="name" placeholder="Your name">
     <input type="text" name="AADHAR" placeholder="AADHAR Number">
     <input type="password" name="password" placeholder="Password">
     <input type="checkbox" name="stayLoggedIn" value=1>
