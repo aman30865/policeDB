@@ -8,10 +8,10 @@
 
     if (array_key_exists("logout", $_GET)) {
             unset($_SESSION);
-            setcookie("id", "", time() - 60*60);
+            setcookie("id", "", time() - 3600);
             $_COOKIE["id"] = "";      
         } 
-    else if ((array_key_exists("id", $_SESSION) AND $_SESSION['id']) OR
+    else if ((array_key_exists("id", $_SESSION) AND $_SESSION['id']) AND
              (array_key_exists("id", $_COOKIE) AND $_COOKIE['id'])) {
               header("Location: loggedinpage.php");
         }
@@ -35,7 +35,7 @@
                 $query = "SELECT id FROM `users` WHERE AADHAR = '".mysqli_real_escape_string($link, $_POST['AADHAR'])."' LIMIT 1";
                 $result = mysqli_query($link, $query);
                 if (mysqli_num_rows($result) > 0) {
-                    $error = "That AADHAR number is already taken.";
+                    $error = "Account with that AADHAR number already exists.";
                 } else {
                 echo mysqli_num_rows($result);  
 /*------------------------SIGNUP-Insertion--------------------------------------*/
@@ -89,17 +89,17 @@
 <div id="error"><?php echo $error; ?></div>
 
 <form method="post">
-    <input type="text" name="name" placeholder="Your Name">
-    <input type="text" name="AADHAR" placeholder="Your AADHAR">
-    <input type="password" name="password" placeholder="Password">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="text" name="AADHAR" placeholder="Your AADHAR" required>
+    <input type="password" name="password" placeholder="Password" required>
     <input type="checkbox" name="stayLoggedIn" value=1>
     <input type="hidden" name="signUp" value="1">
     <input type="submit" name="submit" value="Sign Up!">
 </form>
 
 <form method="post">
-    <input type="text" name="AADHAR" placeholder="AADHAR Number">
-    <input type="password" name="password" placeholder="Password">
+    <input type="text" name="AADHAR" placeholder="AADHAR Number" required>
+    <input type="password" name="password" placeholder="Password" required>
     <input type="checkbox" name="stayLoggedIn" value=1>
     <input type="hidden" name="signUp" value="0">
     <input type="submit" name="submit" value="Log In!">
