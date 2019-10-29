@@ -94,6 +94,16 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
+        div{
+            border: 1px green solid;
+        }
+        .toggleForms {
+              font-weight: bold;
+          }
+     #signUpForm {
+              display:none;
+          }
+/*
       html { 
           background: url(back.jpg) no-repeat center center fixed; 
           -webkit-background-size: cover;
@@ -101,39 +111,47 @@
           -o-background-size: cover;
           background-size: cover;
           }
+*/
       body {  
               background: none;
-              color: #FFF; 
           }
     </style>
     </head>
-<body>     
-<div id="error"><?php echo $error; ?></div>
-<div id="container">
-    <form method="post" id = "signUpForm">
-        <fieldset class="form-group">
-        <input type="text" name="name" placeholder="Your Name" required>
-        </fieldset>
-        <fieldset class="form-group">
-        <input type="text" name="AADHAR" placeholder="Your AADHAR" required>
-        </fieldset>
-        <fieldset class="form-group">
-        <input type="password" name="password" placeholder="Password" required>
-        </fieldset>
-        <fieldset class="form-group">
-        <input type="checkbox" name="stayLoggedIn" value=1>
-        <input type="submit" name="submit" value="Sign Up!">
-        </fieldset>
-    </form>
-
-    <form method="post">
-        <input type="text" name="AADHAR" placeholder="AADHAR Number" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="checkbox" name="stayLoggedIn" value=1>
-        <input type="hidden" name="signUp" value="0">
-        <input type="submit" name="submit" value="Log In!">
-    </form>
-</div>
+<body>
+    <div id="container">
+        <div id="error"><?php if ($error!="") {
+            echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';} ?></div>
+        
+<!--=========================login=========================--> 
+        
+        <form method="post" id="logInForm">
+            <input type="text" name="AADHAR" placeholder="AADHAR Number" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <div class="checkbox">
+                <label><input type="checkbox" name="stayLoggedIn" value=1> Stay logged in</label>
+            </div>
+            <input type="hidden" name="signUp" value="0">
+            <input type="submit" class="btn btn-success" name="submit" value="Log In!">
+            <p><a class="toggleForms"><span style="font-weight:normal;">New User ? </span>Sign up</a></p>
+        </form>
+        
+<!--=========================signup=========================-->
+        <form method="post" id = "signUpForm">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="text" name="AADHAR" placeholder="Your AADHAR" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <div class="checkbox">
+                <label>
+                <input type="checkbox" name="stayLoggedIn" value=1> Stay logged in
+                </label> 
+            </div>
+            <input type="hidden" name="signUp" value="1">
+            <input type="submit" class="btn btn-success" name="submit" value="Sign Up!">
+            <p><a class="toggleForms"><span style="font-weight:normal;">Already have an account ? </span>Login</a></p>
+        </form>
+    </div>
+    
+    
     
     
     
@@ -141,6 +159,12 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(".toggleForms").click(function() {
+            $("#signUpForm").toggle();
+            $("#logInForm").toggle();
+        });
+    </script>
   </body>
 </html>
 
