@@ -85,7 +85,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head><title>PoliceDB</title>
     <!-- Required meta tags always come first -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -111,25 +111,22 @@
             background: none;
           }
         #homePageContainer{
-            margin-top: 200px;
+            padding-top: 180px;
+            margin-top: 20px;
         }
         #topleft{
-            font-size: 20;
-            color:forestgreen;
+            font-size: 2.5em;
+            color:#2fb42f;
             text-align:center;
             width:30%;
             height:100%;
-            float:left; 
-            padding:10px;
-        }
-        nav{
-            height:40px;
+            float:left;
         }
     </style>
     </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" id="topleft" href="#">PoliceDB</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" id="topleft" href="#"><span style="font-weight:bold">PoliceDB</span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -151,7 +148,7 @@
     
     
     <div class="container-fluid" id="homePageContainer">
-        <div class="row"><div class="col-lg-7"></div><div class="col-lg-1"></div><div class="col-lg-3 ">
+        <div class="row"><div class="col-xs-7 col-sm-5 col-lg-7"></div><div class="col-xs-1 col-sm-1 col-lg-1"></div><div class="col-xs-3 col-sm-5 col-lg-3">
         <center>
         <div id="error"><?php if ($error!="") {
             echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';} ?></div>
@@ -192,7 +189,7 @@
             <p><a class="toggleForms"><span style="font-weight:normal;">Already have an account ? </span>Login</a></p>
         </form>
         </center>
-        </div><div class="col-lg-1"></div></div>
+        </div><div class="col-xs-1 col-sm-1 col-lg-1"></div></div>
     </div>
     
     
