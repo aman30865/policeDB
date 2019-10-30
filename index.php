@@ -1,18 +1,24 @@
 <?php
     session_start();
     require_once "config.php";   
-    $error = ""; 
+    $error = "";
+    if (array_key_exists("id", $_COOKIE) && $_COOKIE ['id']) {
+        $_SESSION['id'] = $_COOKIE['id'];
+    }
+    if(isset($_SESSION['id'])) {
+        header("Location: loggedinpage.php");   
+    }
 /*----------------------LOGOUT-----------------------------------------*/
-    if (array_key_exists("logout", $_GET)) {
-            unset($_SESSION);
-            setcookie("id", "", time() - 3600);
-            $_COOKIE["id"] = "";  
-            session_destroy();
-        } 
-    else if ((array_key_exists("id", $_SESSION) AND $_SESSION['id']) AND
-             (array_key_exists("id", $_COOKIE) AND $_COOKIE['id'])) {
-              header("Location: loggedinpage.php");
-        }
+//    if (array_key_exists("logout", $_GET) && $_GET['logout']==1) {
+//            unset($_SESSION);
+//            setcookie("id", "", time() - 60*60);
+//            $_COOKIE['id'] = "";  
+//            session_destroy();
+//        } 
+//    else if ((array_key_exists("id", $_SESSION) AND $_SESSION['id']) AND
+//             (array_key_exists("id", $_COOKIE) AND $_COOKIE['id'])) {
+//              header("Location: loggedinpage.php?logout=0");
+//        }
 /*-----------------------SIGNUP----------------------------------------*/
     if (array_key_exists("submit", $_POST)) {
         if (!$_POST['AADHAR']) {
@@ -95,7 +101,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         div{
-            border:1px green solid;
+            border:0px green solid;
         }
         .toggleForms {
             font-weight: bold;
