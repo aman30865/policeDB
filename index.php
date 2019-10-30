@@ -95,60 +95,104 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         div{
-            border: 1px green solid;
+            border:1px green solid;
         }
         .toggleForms {
-              font-weight: bold;
+            font-weight: bold;
           }
-     #signUpForm {
-              display:none;
+        #signUpForm {
+            display:none;
           }
-/*
-      html { 
-          background: url(back.jpg) no-repeat center center fixed; 
-          -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: cover;
+        html { 
+            height: 100%;
+            background: linear-gradient(white,#888888);
           }
-*/
-      body {  
-              background: none;
+        body {  
+            background: none;
           }
+        #homePageContainer{
+            margin-top: 200px;
+        }
+        #topleft{
+            font-size: 20;
+            color:forestgreen;
+            text-align:center;
+            width:30%;
+            height:100%;
+            float:left; 
+            padding:10px;
+        }
+        nav{
+            height:40px;
+        }
     </style>
     </head>
 <body>
-    <div id="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" id="topleft" href="#">PoliceDB</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+    
+    
+    <div class="container-fluid" id="homePageContainer">
+        <div class="row"><div class="col-lg-7"></div><div class="col-lg-1"></div><div class="col-lg-3 ">
+        <center>
         <div id="error"><?php if ($error!="") {
             echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';} ?></div>
         
 <!--=========================login=========================--> 
         
         <form method="post" id="logInForm">
-            <input type="text" name="AADHAR" placeholder="AADHAR Number" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <div class="checkbox">
+            <fieldset class="form-group">
+                <input type="text" name="AADHAR" placeholder="AADHAR Number" class="form-control" required></fieldset>
+            <fieldset class="form-group">
+                <input type="password" name="password" placeholder="Password" class="form-control" required></fieldset>
+            <div class="form-group form-check">
                 <label><input type="checkbox" name="stayLoggedIn" value=1> Stay logged in</label>
             </div>
+            <fieldset class="form-group">
             <input type="hidden" name="signUp" value="0">
-            <input type="submit" class="btn btn-success" name="submit" value="Log In!">
+                <input type="submit" class="btn btn-success" name="submit" value="Log In!"></fieldset>
             <p><a class="toggleForms"><span style="font-weight:normal;">New User ? </span>Sign up</a></p>
         </form>
         
 <!--=========================signup=========================-->
         <form method="post" id = "signUpForm">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="text" name="AADHAR" placeholder="Your AADHAR" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <div class="checkbox">
+            <fieldset class="form-group">
+                <input type="text" name="name" placeholder="Your Name" class="form-control" required></fieldset>
+            <fieldset class="form-group">
+                <input type="text" name="AADHAR" placeholder="Your AADHAR" class="form-control" required></fieldset>
+            <fieldset class="form-group">
+                <input type="password" name="password" placeholder="Password" class="form-control" required></fieldset>
+           
+            <div class="form-group form-check">
                 <label>
                 <input type="checkbox" name="stayLoggedIn" value=1> Stay logged in
                 </label> 
-            </div>
+                </div>
+            <fieldset class="form-group">
             <input type="hidden" name="signUp" value="1">
-            <input type="submit" class="btn btn-success" name="submit" value="Sign Up!">
+                <input type="submit" class="btn btn-success" name="submit" value="Sign Up!"></fieldset>
             <p><a class="toggleForms"><span style="font-weight:normal;">Already have an account ? </span>Login</a></p>
         </form>
+        </center>
+        </div><div class="col-lg-1"></div></div>
     </div>
     
     
