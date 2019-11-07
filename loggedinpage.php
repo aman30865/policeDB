@@ -152,11 +152,15 @@
             <div class="con" id="formfir">
                 <form>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <label for="exampleInputEmail1">FIR_TYPE</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
+                        <label for="exampleInputPassword1">Station_id</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">detail</label>
                         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
                     
@@ -164,14 +168,22 @@
                 </form>
             </div>
             <div class="con" id="formpolice">
-                <form>
+                <form method="post">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <label for="exampleInputEmail1">aadhar</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
+                        <label for="exampleInputPassword1">batch</label>
                         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">station</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">name</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
