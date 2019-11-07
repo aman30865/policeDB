@@ -8,17 +8,7 @@
     if(isset($_SESSION['id'])) {
         header("Location: loggedinpage.php");   
     }
-/*----------------------LOGOUT-----------------------------------------*/
-//    if (array_key_exists("logout", $_GET) && $_GET['logout']==1) {
-//            unset($_SESSION);
-//            setcookie("id", "", time() - 60*60);
-//            $_COOKIE['id'] = "";  
-//            session_destroy();
-//        } 
-//    else if ((array_key_exists("id", $_SESSION) AND $_SESSION['id']) AND
-//             (array_key_exists("id", $_COOKIE) AND $_COOKIE['id'])) {
-//              header("Location: loggedinpage.php?logout=0");
-//        }
+
 /*-----------------------SIGNUP----------------------------------------*/
     if (array_key_exists("submit", $_POST)) {
         if (!$_POST['AADHAR']) {
@@ -100,8 +90,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
+        footer{
+        position:absolute;
+        bottom:15px;
+        width:98.9%;
+        height: 4rem;
+        }
         div{
-            border:0px green solid;
+            border:1px green solid;
         }
         .toggleForms {
             font-weight: bold;
@@ -127,6 +123,9 @@
             width:30%;
             height:100%;
             float:left;
+        }
+        #hometext{
+            padding:2% 5% ; 
         }
     </style>
     </head>
@@ -154,14 +153,22 @@
     
     
     <div class="container-fluid" id="homePageContainer">
-        <div class="row"><div class="col-xs-7 col-sm-5 col-lg-7"></div><div class="col-xs-1 col-sm-1 col-lg-1"></div><div class="col-xs-3 col-sm-5 col-lg-3">
-        <center>
-        <div id="error"><?php if ($error!="") {
-            echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';} ?></div>
+        <div class="row">
+            <div class="col-xs-7 col-sm-5 col-lg-7" id="hometext">
+                What is Lorem Ipsum?
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                
+            </div>
+            <div class="col-xs-1 col-sm-1 col-lg-1"></div>
+            <div class="col-xs-3 col-sm-5 col-lg-3">
+            <center>
+                <b>SIGN/LOGIN</b><br>
+            <div id="error"><?php if ($error!="") {
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">'.$error.'</div>';} ?></div><br>
         
 <!--=========================login=========================--> 
         
-        <form method="post" id="logInForm">
+            <form method="post" id="logInForm">
             <fieldset class="form-group">
                 <input type="text" name="AADHAR" placeholder="AADHAR Number" class="form-control" required></fieldset>
             <fieldset class="form-group">
@@ -176,7 +183,7 @@
         </form>
         
 <!--=========================signup=========================-->
-        <form method="post" id = "signUpForm">
+            <form method="post" id = "signUpForm">
             <fieldset class="form-group">
                 <input type="text" name="name" placeholder="Your Name" class="form-control" required></fieldset>
             <fieldset class="form-group">
@@ -194,13 +201,12 @@
                 <input type="submit" class="btn btn-success" name="submit" value="Sign Up!"></fieldset>
             <p><a class="toggleForms"><span style="font-weight:normal;">Already have an account ? </span>Login</a></p>
         </form>
-        </center>
-        </div><div class="col-xs-1 col-sm-1 col-lg-1"></div></div>
+            </center>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-lg-1"></div>
+        </div>
     </div>
-    
-    
-    
-    
+    <?php include("footer.php"); ?>
     
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
