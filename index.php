@@ -28,8 +28,7 @@
                 $result = mysqli_query($link, $query);
                 if (mysqli_num_rows($result) > 0) {
                     $error = "Account with that AADHAR number already exists.";
-                } else {
-                echo mysqli_num_rows($result);  
+                } else { 
 /*------------------------SIGNUP-Insertion--------------------------------------*/
                    
                     $query = "INSERT INTO `users` (`name`,`AADHAR`, `password`) VALUES ('".mysqli_real_escape_string($link, $_POST['name'])."','".mysqli_real_escape_string($link, $_POST['AADHAR'])."','".mysqli_real_escape_string($link, $_POST['password'])."')";
@@ -97,7 +96,7 @@
         height: 4rem;
         }
         div{
-            border:1px green solid;
+            border:0px green solid;
         }
         .toggleForms {
             font-weight: bold;
