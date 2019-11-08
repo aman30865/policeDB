@@ -106,7 +106,7 @@
           }
         html { 
             height: 100%;
-            background: linear-gradient(white,#888888);
+            background: linear-gradient(white,#888888) fixed;
           }
         body {  
             background: none;
@@ -155,13 +155,12 @@
         <div class="row">
             <div class="col-xs-7 col-sm-5 col-lg-7" id="hometext">
                 What is Lorem Ipsum?
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  
             </div>
             <div class="col-xs-1 col-sm-1 col-lg-1"></div>
             <div class="col-xs-3 col-sm-5 col-lg-3">
             <center>
-                <b>SIGN/LOGIN</b><br>
+                <b>SIGNUP/LOGIN</b><br>
             <div id="error"><?php if ($error!="") {
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">'.$error.'</div>';} ?></div><br>
         
@@ -191,9 +190,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                 <input type="password" name="password" placeholder="Password" class="form-control" required></fieldset>
            
             <div class="form-group form-check">
-                <label>
-                <input type="checkbox" name="stayLoggedIn" value=1> Stay logged in
-                </label> 
+                <label><input type="checkbox" name="stayLoggedIn" value=1> Stay logged in</label> 
                 </div>
             <fieldset class="form-group">
             <input type="hidden" name="signUp" value="1">

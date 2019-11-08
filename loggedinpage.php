@@ -52,11 +52,16 @@
             color: white;
         }
         #content{
+            text-align: center;
             padding: 2% 2%;
             height: 120%;
         }
         .con{
             display:none;
+        }
+        table{
+            background-color: #63d063;
+            border-radius: 10px
         }
         <?php
             if($priv<2){echo ".admin{display:none";}
@@ -149,43 +154,43 @@
                     ?>
                 </table>
             </div>
-            <div class="con" id="formfir">
-                <form>
+            <div class="con container" id="formfir">
+                <form method="post" action="firentry.php">
                     <div class="form-group">
                         <label for="exampleInputEmail1">FIR_TYPE</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
+                        <input type="text" class="form-control" id="exampleInputEmail1"  placeholder="fir-type" name="fir" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Station_id</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="station-id" name="station" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">detail</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <textarea class="form-control" id="detail" placeholder="Detail" name="details" rows="3" required></textarea>
                     </div>
                     
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" name="fentry" class="btn btn-success">Submit</button>
                 </form>
             </div>
-            <div class="con" id="formpolice">
-                <form method="post">
+            <div class="con container" id="formpolice">
+                <form method="post" action="policeentry.php">
                     <div class="form-group">
                         <label for="exampleInputEmail1">aadhar</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
+                        <input type="text" class="form-control" placeholder="AADHAR" name="aadhar" required>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">batch</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label for="Batch">batch ID</label>
+                        <input type="text" class="form-control" placeholder="Batch ID" name="batch" required>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">station</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
+                        <label for="station_ID">station ID</label>
+                        <input type="text" class="form-control"   placeholder="Station ID" name="station" required>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">name</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                        <label for="exampleInputEmail1">Name</label>
+                        <input type="text" class="form-control"  placeholder="NAME" name="name" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="pentry" class="btn btn-success">Submit</button>
                 </form>
             </div>
         </div>
@@ -194,7 +199,10 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="./jquery-ui-1.11.4/jquery-ui.js"></script>
+    <script
+  src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"
+  integrity="sha256-xI/qyl9vpwWFOXz7+x/9WkG5j/SVnSw21viy8fWwbeE="
+  crossorigin="anonymous"></script>
     <script>
         $('#Fir').click(function(){
             $('#firtable').hide('blind');
@@ -217,8 +225,8 @@
         $('#shPolice').click(function(){
             $('#firtable').hide('blind');
             $('#formfir').hide('blind');
-            $('#formpolice').hide('blind');
-            $('#policetable').show('blind');
+            $('#formpolice').hide( "drop", { direction: "down" }, "slow");
+            $('#policetable').show("slide");
         });
     </script>
     
