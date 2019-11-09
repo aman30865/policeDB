@@ -126,6 +126,15 @@
         #hometext{
             padding:2% 5% ; 
         }
+        @media only screen and (max-width: 768px) {
+        .pic {
+        display: none;
+            }}
+        @media only screen and (max-width: 576px) {
+        .smal {
+        display: none;
+            }}
+}
     </style>
     </head>
 <body>
@@ -153,11 +162,15 @@
     
     <div class="container-fluid" id="homePageContainer">
         <div class="row">
-            <div class="col-xs-7 col-sm-5 col-lg-7" id="hometext">
-                What is Lorem Ipsum?
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  
+            <div class="col-xs-7 col-sm-5 col-lg-7 smal container-fluid" id="hometext">
+                <div class="row" >
+                <img class="col-sm-6 pic" id="pic" src="assets/batch.png" style="height:350px;" >
+                    <div class="col-xs-12 col-sm-6">
+                    police data
+                    </div>
+                </div>
             </div>
-            <div class="col-xs-1 col-sm-1 col-lg-1"></div>
+            <div class="col-xs-5 col-sm-1 col-lg-1"></div>
             <div class="col-xs-3 col-sm-5 col-lg-3">
             <center>
                 <b>SIGNUP/LOGIN</b><br>
