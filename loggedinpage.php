@@ -66,6 +66,7 @@
         <?php
             if($priv<2){echo ".admin{display:none";}
         ?>
+        
     </style>
 </head>
     <body>
@@ -99,12 +100,13 @@
         
         
         <div id="content" class="container-fluid">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for id..">
             <input type="button" class="btn btn-primary" id="Fir" value="ADD FIR" style="margin:10px">
             <input type="button" class="btn btn-primary admin" id="Police" value="ADD POLICE" style="margin:10px">
             <input type="button" class="btn btn-primary" id="shFir" value="SHOW FIR" style="margin:10px">
             <input type="button" class="btn btn-primary admin" id="shPolice" value="SHOW POLICE" style="margin:10px">
             <div id="firtable">
-                <table class="table table-striped">
+                <table class="table table-striped" id="myTable">
                     <thead>
                         <th>FIR_id</th>
                         <th>FIR_Type</th>
@@ -141,9 +143,10 @@
                         <th>batchid</th>
                         <th>stationid</th>
                         <th>name</th>
+                        <th>Option</th>
                     </thead>
                     <?php
-                    $result = mysqli_query($link,"SELECT * FROM policemen");
+                    $result = mysqli_query($link,"CALL GetPolice()");
                     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
                     {
                         echo "<tr>
@@ -151,6 +154,7 @@
                         <td>".$row["batch_id"]."</td>
                         <td>".$row["station_id"]."</td>
                         <td>".$row["name"]."</td>
+                        <td><a href='policedel.php/?police=".$row["AADHAR"]."'>DELETE</a></td>
                     </tr>";
                     }
                     ?>
@@ -160,16 +164,21 @@
                 <form method="post" action="firentry.php">
                     <div class="form-group">
                         <label for="exampleInputEmail1">FIR_TYPE</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1"  placeholder="fir-type" name="fir" required>
+                        <input type="text" class="form-control" placeholder="fir-type" name="fir" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Station_id</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="station-id" name="station" required>
+                        <input type="text" class="form-control"placeholder="station-id" name="station" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Location:</label>
+                        <input type="text" class="form-control" placeholder="location" name="location" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">detail</label>
-                        <textarea class="form-control" id="detail" placeholder="Detail" name="details" rows="3" required></textarea>
+                        <textarea class="form-control" placeholder="Detail" name="details" rows="3" required></textarea>
                     </div>
+                    
                     
                     <button type="submit" name="fentry" class="btn btn-success">Submit</button>
                 </form>
@@ -189,7 +198,7 @@
                         <input type="text" class="form-control"   placeholder="Station ID" name="station" required>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Name</label>
+                        <label for="Name">Name</label>
                         <input type="text" class="form-control"  placeholder="NAME" name="name" required>
                     </div>
                     <button type="submit" name="pentry" class="btn btn-success">Submit</button>
@@ -227,6 +236,25 @@
             $('#policetable').show("slide");
         });
     </script>
-    
+    <script>
+        function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+</script>
     </body>
 </html>
