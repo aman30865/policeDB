@@ -7,12 +7,20 @@
     $priv=$row["access"];
     $ad=$row["AADHAR"];
     $na=$row["Name"];
+    $ph=$row["phone"];
+    $ge=$row["gender"];
+    $em=$row["email"];
+    $add=$row["address"];
     if (array_key_exists("id", $_COOKIE) && $_COOKIE ['id']) {
         $_SESSION['id'] = $_COOKIE['id'];
         $iid=$_SESSION['id'];
     }
     if (!isset($_SESSION['id'])) {
         header("Location: index.php");  }
+    if (array_key_exists("profile", $_POST)){
+        $querypro="UPDATE `users` SET `Name`='".$_POST["name"]."',`email`='".$_POST["email"]."',`phone`='".$_POST["phone"]."',`address`='".$_POST["addr"]."',`gender`='".$_POST["gender"]."' WHERE id=".$iid;
+        $result = mysqli_query($link, $querypro);
+    }
 ?>
 
 
@@ -70,16 +78,16 @@
     
     <body>
         <nav class="navbar navbar-expand-lg fixed-nav-bar navbar-dark bg-dark" id="navbar">
-                <a class="navbar-brand" id="topleft" href="#"><span style="font-weight:bold">PoliceDB</span></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+        <a class="navbar-brand" id="topleft" href="#"><span style="font-weight:bold">PoliceDB</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
             <div class="navbar-nav navbar-collapse mr-auto" id="wel"> welcome,<?php
                     $result = mysqli_query($link,"SELECT Name FROM users where id=$iid");
                     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
                     {echo $row["Name"];}
                 ?></div>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -96,25 +104,40 @@
             </ul>
           </div>
         </nav>
-        <br>
+        <br><br><br><br>
         <div class="container">
             <center>
-        <form method="post" action="firentry.php">
+        <form method="post" action="profile.php">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">AADHAR</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" value="<?php echo $ad; ?>" name="fir" readonly>
+                        <label>AADHAR:</label>
+                        <input type="text" class="form-control" value="<?php echo $ad; ?>" name="fir" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Name</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" value="<?php echo $na; ?>" name="name" required>
+                        <label>Name:</label>
+                        <input type="text" class="form-control" value="<?php echo $na; ?>" name="name">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">detail</label>
-                        <textarea class="form-control" id="detail" placeholder="Detail" name="details" rows="3" required></textarea>
+                        <label>E-mail:</label>
+                        <input type="email" class="form-control" value="<?php echo $em; ?>" name="email">
                     </div>
-                    
-                    <button type="submit" name="fentry" class="btn btn-success">Submit</button>
+                    <div class="form-group">
+                        <label>Phone Number:</label>
+                        <input type="tel" class="form-control" value="<?php echo $ph; ?>" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                        <small>Format: 123-456-7890</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <textarea type="text" class="form-control" name="addr" value="<?php echo $add; ?>" rows="3"></textarea>
+                    </div>
+                    <div class="form-check">
+                        <label>Gender:</label><br>
+                        <label class="radio-inline"><input type="radio" name="gender" value="Male"> Male </label>
+                        <label class="radio-inline"><input type="radio"  name="gender" value="Female"> Female </label>
+                        <label class="radio-inline"><input type="radio" name="gender" value="other"> Other</label>
+                    </div><br>
+                    <button type="submit" name="profile" class="btn btn-success">Submit</button> <button class="btn btn-info"><a style="color:white" href="loggedinpage.php">BACK</a></button>
                 </form>
+                
             </center>
         </div>
         
