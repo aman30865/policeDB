@@ -97,12 +97,15 @@
         </nav>
 <?php
     if(array_key_exists("fentry", $_POST)){
-        $query = "INSERT INTO `fir` (`FIR_TYPE`, `reporter`, `station_id`) VALUES ('".$_POST["fir"]."', ".$ad.", ".$_POST["station"].")";
-        if(!mysqli_query($link, $query)){
+        $query1 = "INSERT INTO `fir` (`FIR_TYPE`, `reporter`, `station_id`) VALUES ('".$_POST["fir"]."', ".$ad.", ".$_POST["station"].")";
+        if(!mysqli_query($link, $query1)){
             echo "entry problem";
         }
         else{
-            header("Location: loggedinpage.php");
+            $query2 = "INSERT INTO `fir_detail` (`fir_id`, `detail`, `location`) VALUES ('".mysqli_insert_id($link)."', '".$_POST["details"]."', '".$_POST["location"]."')";
+            if(!mysqli_query($link, $query2)){
+            echo "entry problem in details";}else{
+            header("Location: loggedinpage.php");}
         }
     }
 ?>
