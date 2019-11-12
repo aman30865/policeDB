@@ -97,14 +97,24 @@
         </nav>
 <?php
     if(array_key_exists("pentry", $_POST)){
-        $query = "INSERT INTO `policemen` (`AADHAR`, `batch_id`, `station_id`, `name`) VALUES (".$_POST["aadhar"].", ".$_POST["batch"].", ".$_POST["station"].", '".$_POST["name"]."')";
-        if(!mysqli_query($link, $query)){
-            echo "entry problem";
+        $querycheck = "SELECT name FROM `policemen` WHERE AADHAR = ".$_POST['aadhar'];
+        $result = mysqli_query($link, $querycheck);
+        if (mysqli_num_rows($result) > 0) {
+           echo "<center id='content'>Already a Police<br><a href='loggedinpage.php'><-back</a></center>";
         }
         else{
-            header("Location: loggedinpage.php");
+            $query1 = "INSERT INTO `policemen` (`AADHAR`, `batch_id`, `station_id`, `name`) VALUES (".$_POST["aadhar"].", ".$_POST["batch"].", ".$_POST["station"].", '".$_POST["name"]."')";
+            $query2 = "UPDATE `users` SET `access`=1 WHERE `AADHAR` = ".$_POST["aadhar"];
+            if(!mysqli_query($link, $query1) || !mysqli_query($link, $query2)){
+                echo "<center id='content'>entry problem<br><a href='loggedinpage.php'><-back</a></center>";
+            }
+            else{
+                header("Location: loggedinpage.php");
+            }
         }
-    }
+    }else{
+                header("Location: loggedinpage.php");
+            }
 ?>
 
     </body>

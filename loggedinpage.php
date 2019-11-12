@@ -111,6 +111,7 @@
                         <th>Reporter</th>
                         <th>Station_id</th>
                         <th>Status</th>
+                        <th>Details</th>
                     </thead>
                     <?php
                     if($priv<1){
@@ -126,6 +127,7 @@
                         <td>".$row["reporter"]."</td>
                         <td>".$row["station_id"]."</td>
                         <td>".$row["status"]."</td>
+                        <td><a href='firdetails.php/?firid=".$row["FIR_ID"]."'>Details</a></td>
                     </tr>";
                     }
                     ?>
