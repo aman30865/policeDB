@@ -181,7 +181,9 @@
         
             <form method="post" id="logInForm">
             <fieldset class="form-group">
-                <input type="text" name="AADHAR" placeholder="AADHAR Number" class="form-control" required></fieldset>
+                <input type="text" name="AADHAR" placeholder="AADHAR Number" class="form-control" pattern="[0-9]{2}"required>
+                <small id="emailHelp" class="form-text text-muted">16 digit AADHAR number</small>
+                </fieldset>
             <fieldset class="form-group">
                 <input type="password" name="password" placeholder="Password" class="form-control" required></fieldset>
             <div class="form-group form-check">
