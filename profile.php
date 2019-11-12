@@ -6,6 +6,7 @@
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $priv=$row["access"];
     $ad=$row["AADHAR"];
+    $na=$row["Name"];
     if (array_key_exists("id", $_COOKIE) && $_COOKIE ['id']) {
         $_SESSION['id'] = $_COOKIE['id'];
         $iid=$_SESSION['id'];
@@ -95,17 +96,28 @@
             </ul>
           </div>
         </nav>
-<?php
-    if(array_key_exists("fentry", $_POST)){
-        $query = "INSERT INTO `fir` (`FIR_TYPE`, `reporter`, `station_id`) VALUES ('".$_POST["fir"]."', ".$ad.", ".$_POST["station"].")";
-        if(!mysqli_query($link, $query)){
-            echo "entry problem";
-        }
-        else{
-            header("Location: loggedinpage.php");
-        }
-    }
-?>
-
+        <br>
+        <div class="container">
+            <center>
+        <form method="post" action="firentry.php">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">AADHAR</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" value="<?php echo $ad; ?>" name="fir" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Name</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" value="<?php echo $na; ?>" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">detail</label>
+                        <textarea class="form-control" id="detail" placeholder="Detail" name="details" rows="3" required></textarea>
+                    </div>
+                    
+                    <button type="submit" name="fentry" class="btn btn-success">Submit</button>
+                </form>
+            </center>
+        </div>
+        
+        
     </body>
 </html>
