@@ -60,7 +60,6 @@
             display:none;
         }
         table{
-            background-color: #63d063;
             border-radius: 10px
         }
         <?php
@@ -143,7 +142,7 @@
                         <th>batchid</th>
                         <th>stationid</th>
                         <th>name</th>
-                        <th>Option</th>
+<!--                        <th>Option</th>-->
                     </thead>
                     <?php
                     $result = mysqli_query($link,"CALL GetPolice()");
@@ -153,9 +152,9 @@
                         <td>".$row["AADHAR"]."</td>
                         <td>".$row["batch_id"]."</td>
                         <td>".$row["station_id"]."</td>
-                        <td>".$row["name"]."</td>
-                        <td><a href='policedel.php/?police=".$row["AADHAR"]."'>DELETE</a></td>
-                    </tr>";
+                        <td>".$row["name"]."</td>"
+//                        <td><a href='policedel.php/?police=".$row["AADHAR"]."'>DELETE</a></td>
+                    ."</tr>";
                     }
                     ?>
                 </table>
