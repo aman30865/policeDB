@@ -142,7 +142,7 @@
                         <th>batchid</th>
                         <th>stationid</th>
                         <th>name</th>
-<!--                        <th>Option</th>-->
+                        <th>Option</th>
                     </thead>
                     <?php
                     $result = mysqli_query($link,"CALL GetPolice()");
@@ -152,9 +152,9 @@
                         <td>".$row["AADHAR"]."</td>
                         <td>".$row["batch_id"]."</td>
                         <td>".$row["station_id"]."</td>
-                        <td>".$row["name"]."</td>"
-//                        <td><a href='policedel.php/?police=".$row["AADHAR"]."'>DELETE</a></td>
-                    ."</tr>";
+                        <td>".$row["name"]."</td>
+                        <td><a href='policedel.php/?police=".$row["AADHAR"]."'>DELETE</a></td>
+                    </tr>";
                     }
                     ?>
                 </table>
@@ -172,6 +172,10 @@
                     <div class="form-group">
                         <label for="exampleInputPassword1">Location:</label>
                         <input type="text" class="form-control" placeholder="location" name="location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">date-time:</label>
+                        <input type="datetime-local" class="form-control" placeholder="" name="firtime" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">detail</label>

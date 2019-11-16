@@ -96,8 +96,10 @@
           </div>
         </nav>
 <?php
+        $datet=date("Y-m-d H:i:s", strtotime($_POST["firtime"]));
+        echo $datet;
     if(array_key_exists("fentry", $_POST)){
-        $query1 = "INSERT INTO `fir` (`FIR_TYPE`, `reporter`, `station_id`) VALUES ('".$_POST["fir"]."', ".$ad.", ".$_POST["station"].")";
+        $query1 = "INSERT INTO `fir` (`FIR_TYPE`, `reporter`, `station_id`,`filed_at`) VALUES ('".$_POST["fir"]."', ".$ad.", ".$_POST["station"].",'".$datet."')";
         if(!mysqli_query($link, $query1)){
             echo "entry problem";
         }

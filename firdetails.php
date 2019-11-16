@@ -6,6 +6,10 @@
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $priv=$row["access"];
     $ad=$row["AADHAR"];
+    print_r($_POST);
+    if (array_key_exists("resolve", $_POST)){
+         $queryup = mysqli_query($link,"UPDATE `fir` SET `status`='resolved' WHERE FIR_ID=".$_POST["firid"]);
+    }
     if (array_key_exists("firid", $_GET)){
     $firid=$_GET["firid"];
     $queryfir= mysqli_query($link,"SELECT `fir_id`, `detail`, `location` FROM `fir_detail` WHERE `fir_id`=$firid");
@@ -20,6 +24,7 @@
     if (!isset($_SESSION['id'])) {
         header("Location: index.php");
     }
+
 ?>
 
 
@@ -73,20 +78,18 @@
         ?>
     </style>
 </head>
-    
-    
     <body>
         <nav class="navbar navbar-expand-lg fixed-nav-bar navbar-dark bg-dark" id="navbar">
-        <a class="navbar-brand" id="topleft" href="#"><span style="font-weight:bold">PoliceDB</span></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
+                <a class="navbar-brand" id="topleft" href="#"><span style="font-weight:bold">PoliceDB</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
             <div class="navbar-nav navbar-collapse mr-auto" id="wel"> welcome,<?php
                     $result = mysqli_query($link,"SELECT Name FROM users where id=$iid");
                     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-                    {echo $row["Name"];}
-                ?></div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    {echo " ".$row["Name"];}?> <a href="profile.php">&nbsp;edit</a>
+            </div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -103,10 +106,11 @@
             </ul>
           </div>
         </nav>
-        <br><br><br><br>
-        <div class="container">
+        
+        
+        <div class="container" id="content">
             <center>
-        <form method="post" action="profile.php">
+        <form method="POST">
                     <div class="form-group">
                         <label>FIR ID:</label>
                         <input type="text" class="form-control" value="<?php echo $firs["fir_id"] ?>" name="firid" readonly>
@@ -119,12 +123,20 @@
                         <label>Details:</label>
                         <input type="text" class="form-control" value="<?php echo $firs["detail"] ?>" name="detail" readonly>
                     </div>
-                    <button class="btn btn-info"><a style="color:white" href="./loggedinpage.php">BACK</a></button>
-                </form>
+                    <?php
+                    if($priv>1){
+                    echo "<input type='hidden' name='resolved' value='1'><input type='submit' class='btn btn-success' name='resolve' value='RESOLVED'>";}
+                    ?>
                 
+                </form>
+                <button class="btn btn-info" value="0"><a style="color:white" href="./loggedinpage.php">BACK</a></button>
             </center>
+            
         </div>
         
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         
     </body>
 </html>
