@@ -130,10 +130,14 @@
         .pic {
         display: none;
             }}
-        @media only screen and (max-width: 576px) {
+        @media only screen and (max-width: 578px) {
         .smal {
         display: none;
             }}
+        img{
+            height: auto;
+            width: inherit;
+        }
 }
     </style>
     </head>
@@ -150,7 +154,7 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Contact Us</a>
       </li>
         <li class="nav-item">
         <a class="nav-link" href="#">About</a>
@@ -162,16 +166,11 @@
     
     <div class="container-fluid" id="homePageContainer">
         <div class="row">
-            <div class="col-xs-7 col-sm-5 col-lg-7 smal container-fluid" id="hometext">
-                <div class="row" >
-                <img class="col-sm-6 pic" id="pic" src="assets/batch.png" style="height:350px;" >
-                    <div class="col-xs-12 col-sm-6">
-                    police data
-                    </div>
-                </div>
+            <div class="smal col-sm-3 ">
+            <img src="assets/batch.png" style="height:350px;" >
             </div>
-            <div class="col-xs-5 col-sm-1 col-lg-1"></div>
-            <div class="col-xs-3 col-sm-5 col-lg-3">
+            <div class="smal col-sm-1"></div>
+            <div class="col-sm-4">
             <center>
                 <b>SIGNUP/LOGIN</b><br>
             <div id="error"><?php if ($error!="") {
@@ -214,7 +213,10 @@
         </form>
             </center>
             </div>
-            <div class="col-xs-1 col-sm-1 col-lg-1"></div>
+            <div class="smal col-sm-1"></div>
+            <div class="smal col-sm-3">
+            <img src="assets/download.jpg" style="height:350px;" >
+            </div>
         </div>
     </div>
     <?php include("footer.php"); ?>
