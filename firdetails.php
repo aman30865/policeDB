@@ -6,14 +6,15 @@
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $priv=$row["access"];
     $ad=$row["AADHAR"];
-    print_r($_POST);
     if (array_key_exists("resolve", $_POST)){
          $queryup = mysqli_query($link,"UPDATE `fir` SET `status`='resolved' WHERE FIR_ID=".$_POST["firid"]);
     }
     if (array_key_exists("firid", $_GET)){
     $firid=$_GET["firid"];
-    $queryfir= mysqli_query($link,"SELECT `fir_id`, `detail`, `location` FROM `fir_detail` WHERE `fir_id`=$firid");
+    $queryfir= mysqli_query($link,"SELECT `fir_id`, `detail`, `location`,`resolved_at` FROM `fir_detail` WHERE `fir_id`=$firid");
     $firs = mysqli_fetch_array($queryfir, MYSQLI_ASSOC);
+    $queryfird= mysqli_query($link,"SELECT `FIR_ID`, `FIR_TYPE`, `reporter`, `station_id`, `status`, `filed_at` FROM `fir` WHERE `FIR_ID`=$firid");
+    $firds = mysqli_fetch_array($queryfird, MYSQLI_ASSOC);
     }else{
         header("Location: http://localhost/dashboard/policeDB/loggedinpage.php");
     }
@@ -95,7 +96,7 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Contact Us</a>
               </li>
                 <li class="nav-item">
                 <a class="nav-link" href="#">About</a>
@@ -113,16 +114,27 @@
         <form method="POST">
                     <div class="form-group">
                         <label>FIR ID:</label>
-                        <input type="text" class="form-control" value="<?php echo $firs["fir_id"] ?>" name="firid" readonly>
+                        <input type="text" class="form-control" value="<?php echo $firs["fir_id"]; ?>" name="firid" readonly>
                     </div>
                     <div class="form-group">
                         <label>Location:</label>
-                        <input type="text" class="form-control" value="<?php echo $firs["location"] ?>" name="location" readonly>
+                        <input type="text" class="form-control" value="<?php echo $firs["location"]; ?>" name="location" readonly>
                     </div>
                     <div class="form-group">
                         <label>Details:</label>
-                        <input type="text" class="form-control" value="<?php echo $firs["detail"] ?>" name="detail" readonly>
+                        <input type="text" class="form-control" value="<?php echo $firs["detail"]; ?>" name="detail" readonly>
                     </div>
+                    <div class="form-group">
+                        <label>Filing_date:</label>
+                        <input type="text" class="form-control" value="<?php echo $firds["filed_at"]; ?>" name="filed_at" readonly>
+                    </div>
+                    <?php
+                    if($firds["status"]=='resolved'){
+                    echo "<div class='form-group'>
+                        <label>Resolved_date:</label>
+                        <input type='text' class='form-control' value='".$firs["resolved_at"]."' name='filed_at' readonly></div>";
+                    }
+                    ?>
                     <?php
                     if($priv>1){
                     echo "<input type='hidden' name='resolved' value='1'><input type='submit' class='btn btn-success' name='resolve' value='RESOLVED'>";}
