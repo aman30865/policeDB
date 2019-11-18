@@ -38,16 +38,16 @@
             font-size: 2.5em;
             color:#2fb42f;
             text-align:center;
-            width:30%;
+            width:28%;
             height:100%;
             float:left;
         }
         #navbarSupportedContent{
-            margin-left: 25%;
+            margin-left: 24%;
         }
         #wel{
             float: left;
-            margin-left:16%;
+            margin-left:15%;
             font-weight:bold;
             color: white;
         }
@@ -82,13 +82,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="contact.php">Contact Us</a>
               </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="about.php">About</a>
               </li>
                 <li class="nav-item">
                 <a class="nav-link" href='logout.php'>Log out</a>
@@ -142,7 +142,7 @@
                         <th>batchid</th>
                         <th>stationid</th>
                         <th>name</th>
-                        <th>Option</th>
+<!--                        <th>Option</th>-->
                     </thead>
                     <?php
                     $result = mysqli_query($link,"CALL GetPolice()");
@@ -152,11 +152,10 @@
                         <td>".$row["AADHAR"]."</td>
                         <td>".$row["batch_id"]."</td>
                         <td>".$row["station_id"]."</td>
-                        <td>".$row["name"]."</td>
-                        <td><a href='policedel.php/?police=".$row["AADHAR"]."'>DELETE</a></td>
-                    </tr>";
+                        <td>".$row["name"]."</td></tr>";
                     }
                     ?>
+<!--                    <td><a href='policedel.php/?police=".$row["AADHAR"]."'>DELETE</a></td>-->
                 </table>
             </div>
             <div class="con container" id="formfir">
