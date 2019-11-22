@@ -120,6 +120,7 @@
                     else{
                         $result = mysqli_query($link,"SELECT * FROM fir");
                     }
+                    if (mysqli_num_rows($result) > 0){
                     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
                     {
                         echo "<tr>
@@ -130,7 +131,7 @@
                         <td>".$row["status"]."</td>
                         <td><a href='firdetails.php/?firid=".$row["FIR_ID"]."'>Details</a></td>
                     </tr>";
-                    }
+                    }}
                     ?>
                     
                 </table>

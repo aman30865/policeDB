@@ -42,11 +42,11 @@
                     } else {
                         $query = "UPDATE `users` SET password = '".md5(md5(mysqli_insert_id($link)).$_POST['password'])."' WHERE id = ".mysqli_insert_id($link)." LIMIT 1";
                         mysqli_query($link, $query);
-                        $_SESSION['id'] = mysqli_insert_id($link);
-                        if ($_POST['stayLoggedIn'] == '1') {
-                            setcookie("id", mysqli_insert_id($link), time() + 60*60*24*365);
-                        } 
-                        header("Location: loggedinpage.php");
+//                        $_SESSION['id'] = mysqli_insert_id($link);
+//                        if ($_POST['stayLoggedIn'] == '1') {
+//                            setcookie("id", mysqli_insert_id($link), time() + 60*60*24*365);
+//                        } 
+                        header("Location: index.php");
                     }
                 }
                 
