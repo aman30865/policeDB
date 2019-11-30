@@ -62,7 +62,7 @@
                         if ($hashedPassword == $row['password']) {
                             $_SESSION['id'] = $row['id'];
                             if ($_POST['stayLoggedIn'] == '1') {
-                                setcookie("id", $row['id'], time() + 60*60*24*365);
+                                setcookie("id", $row['id'], time() + 60*60*24);
                             }
                             header("Location: loggedinpage.php");   
                         } else {
