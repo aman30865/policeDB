@@ -18,8 +18,10 @@
     if (!isset($_SESSION['id'])) {
         header("Location: index.php");  }
     if (array_key_exists("profile", $_POST)){
+        
         $querypro="UPDATE `users` SET `Name`='".$_POST["name"]."',`email`='".$_POST["email"]."',`phone`='".$_POST["phone"]."',`address`='".$_POST["addr"]."',`gender`='".$_POST["gender"]."' WHERE id=".$iid;
         $result = mysqli_query($link, $querypro);
+        header("Location: index.php");
     }
 ?>
 
@@ -78,7 +80,7 @@
     
     <body>
         <nav class="navbar navbar-expand-lg fixed-nav-bar navbar-dark bg-dark" id="navbar">
-        <a class="navbar-brand" id="topleft" href="#"><span style="font-weight:bold">PoliceDB</span></a>
+        <a class="navbar-brand" id="topleft" href="https://aman-prakash2.000webhostapp.com/"><span style="font-weight:bold">PoliceDB</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -90,14 +92,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="contact.php">Contact Us</a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link" href="about.php">About</a>
-      </li>
+                <a class="nav-link" href="https://aman-prakash2.000webhostapp.com/">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+                <li class="nav-item">
+                <a class="nav-link" href="about.php">About</a>
+              </li>
                 <li class="nav-item">
                 <a class="nav-link" href='logout.php'>Log out</a>
               </li>
@@ -127,7 +129,7 @@
                     </div>
                     <div class="form-group">
                         <label>Address:</label>
-                        <textarea type="text" class="form-control" name="addr" value="<?php echo $add; ?>" rows="3"></textarea>
+                        <input type="text" class="form-control" name="addr" value="<?php echo $add; ?>" rows="3"></input>
                     </div>
                     <div class="form-check">
                         <label>Gender:</label><br>
@@ -135,7 +137,8 @@
                         <label class="radio-inline"><input type="radio"  name="gender" value="Female"> Female </label>
                         <label class="radio-inline"><input type="radio" name="gender" value="other"> Other</label>
                     </div><br>
-                    <button type="submit" name="profile" class="btn btn-success">Submit</button> <button class="btn btn-info"><a style="color:white" href="loggedinpage.php">BACK</a></button>
+                    <button type="submit" name="profile" class="btn btn-success">Submit</button>
+                    <button class="btn btn-info"><a style="color:white" href="loggedinpage.php">BACK</a></button>
                 </form>
                 
             </center>

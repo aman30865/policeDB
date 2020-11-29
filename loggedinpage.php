@@ -1,6 +1,9 @@
 <?php
     session_start();
     require_once "config.php";
+    if (!isset($_SESSION['id'])) {
+        header("Location: index.php");   
+    }
     $iid=$_SESSION['id'];
     $result = mysqli_query($link,"SELECT * FROM users where id=$iid");
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -70,7 +73,7 @@
 </head>
     <body>
         <nav class="navbar navbar-expand-lg fixed-nav-bar navbar-dark bg-dark" id="navbar">
-                <a class="navbar-brand" id="topleft" href="#"><span style="font-weight:bold">PoliceDB</span></a>
+                <a class="navbar-brand" id="topleft" href="https://aman-prakash2.000webhostapp.com/"><span style="font-weight:bold">PoliceDB</span></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

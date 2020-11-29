@@ -61,9 +61,7 @@
                         $hashedPassword = md5(md5($row['id']).$_POST['password']);
                         if ($hashedPassword == $row['password']) {
                             $_SESSION['id'] = $row['id'];
-                            if ($_POST['stayLoggedIn'] == '1') {
-                                setcookie("id", $row['id'], time() + 60*60*24);
-                            }
+                            setcookie("id", $row['id'], time() + 60*60*24);
                             header("Location: loggedinpage.php");   
                         } else {
                             $error = "That AADHAR/password combination Wrong.";
@@ -85,7 +83,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+    <link rel="icon" href="favicon.png" type="image/gif">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
@@ -180,7 +178,7 @@
         
             <form method="post" id="logInForm">
             <fieldset class="form-group">
-                <input type="text" name="AADHAR" placeholder="AADHAR Number" class="form-control" pattern="[0-9]{2}"required>
+                <input type="text" name="AADHAR" placeholder="AADHAR Number" class="form-control" pattern="[0-9]{2-16}"required>
                 <small id="emailHelp" class="form-text text-muted">16 digit AADHAR number</small>
                 </fieldset>
             <fieldset class="form-group">
@@ -215,7 +213,7 @@
             </div>
             <div class="smal col-sm-1"></div>
             <div class="smal col-sm-3">
-            <img src="assets/download.jpg" style="height:350px;" >
+            <img src="assets/batch.png" style="height:350px;" >
             </div>
         </div>
     </div>
